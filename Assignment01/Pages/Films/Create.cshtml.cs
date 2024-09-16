@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Assignment01.Context;
 using Assignment01.Entities;
 
-namespace Assignment01.Pages
+namespace Assignment01.Pages.Films
 {
     public class CreateModel : PageModel
     {

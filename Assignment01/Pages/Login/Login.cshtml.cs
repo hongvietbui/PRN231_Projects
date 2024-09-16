@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Assignment01.Pages.Login;
+namespace Assignment01.Pages.Films.Login;
 
 public class Login : PageModel
 {
