@@ -1,0 +1,6 @@
+﻿services:
+  assignment01:
+    image: assignment01
+    build:
+      context: .
+      dockerfile: Assignment01/Dockerfile

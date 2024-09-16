@@ -1,0 +1,60 @@
+@page
+@model Assignment01.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Films[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Films[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Films[0].FilmUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Films[0].CountryCodeNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Films[0].Genre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Films) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryCodeNavigation.CountryCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre.GenreID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.FilmID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.FilmID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.FilmID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
