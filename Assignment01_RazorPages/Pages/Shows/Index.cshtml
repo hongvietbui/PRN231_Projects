@@ -1,0 +1,66 @@
+@page
+@model Assignment01_RazorPages.Pages.Shows.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].ShowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].Slot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].Film)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Show[0].Room)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Show) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Film.CountryCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.RoomID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ShowID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ShowID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,57 @@
+@page
+@model Assignment01_RazorPages.Pages.Shows.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Show</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Show.ShowID" />
+            <div class="form-group">
+                <label asp-for="Show.RoomID" class="control-label"></label>
+                <select asp-for="Show.RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
+                <span asp-validation-for="Show.RoomID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Show.FilmID" class="control-label"></label>
+                <select asp-for="Show.FilmID" class="form-control" asp-items="ViewBag.FilmID"></select>
+                <span asp-validation-for="Show.FilmID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Show.ShowDate" class="control-label"></label>
+                <input asp-for="Show.ShowDate" class="form-control" />
+                <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Show.Price" class="control-label"></label>
+                <input asp-for="Show.Price" class="form-control" />
+                <span asp-validation-for="Show.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Show.Status" class="control-label"></label>
+                <input asp-for="Show.Status" class="form-control" />
+                <span asp-validation-for="Show.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Show.Slot" class="control-label"></label>
+                <input asp-for="Show.Slot" class="form-control" />
+                <span asp-validation-for="Show.Slot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Assignment01.Controllers;
 
-[Microsoft.AspNetCore.Components.Route("api/[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class AuthController : ControllerBase
 {
@@ -18,7 +18,7 @@ public class AuthController : ControllerBase
         //     .Build();
     }
     //post: Login
-    [HttpPost("Login")]
+    [HttpPost]
     public async Task<IActionResult> Login([FromBody] LoginRequest userInfo) 
     {
         //Get user and password from appsettings.json
