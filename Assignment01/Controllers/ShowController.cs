@@ -68,6 +68,30 @@ namespace Assignment01.Controllers
                 RoomID = show.RoomID
             };
         }
+        
+        // GET: api/Show/search/{title}
+        [HttpGet("search/{showDate}/{selectedRoomId}")]
+        public async Task<ActionResult<List<ShowDTO>>> GetShow(DateTime showDate, int selectedRoomId)
+        {
+            var shows = await _context.Shows.Where(s => s.ShowDate == showDate && s.RoomID == selectedRoomId).ToListAsync();
+            
+            if (shows == null)
+            {
+                return NotFound();
+            }
+            
+            return shows.Select(s => new ShowDTO
+            {
+                ShowID = s.ShowID,
+                FilmID = s.FilmID,
+                ShowDate = s.ShowDate,
+                Price = s.Price,
+                Status = s.Status,
+                Slot = s.Slot,
+                RoomID = s.RoomID
+            }).ToList();
+        }
+        
 
         // PUT: api/Show/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

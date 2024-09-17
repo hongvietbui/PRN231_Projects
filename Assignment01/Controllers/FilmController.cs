@@ -68,6 +68,26 @@ namespace Assignment01.Controllers
                 FilmUrl = film.FilmUrl
             };
         }
+        
+        [HttpGet("search/{title}")]
+        public async Task<ActionResult<List<FilmResponseDTO>>> GetFilmByTitle(string title)
+        {
+            if (_context.Films == null)
+            {
+                return NotFound();
+            }
+            var filmList = await _context.Films.Select(f => new FilmResponseDTO
+            {
+                FilmID = f.FilmID,
+                Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
+                Title = f.Title,
+                Year = f.Year,
+                CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
+                FilmUrl = f.FilmUrl
+            }).Where(f => f.Title.Contains(title)).ToListAsync();
+
+            return filmList;
+        }
 
         // PUT: api/Film/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

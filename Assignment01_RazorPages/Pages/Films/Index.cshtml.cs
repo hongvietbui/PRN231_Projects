@@ -8,13 +8,13 @@ namespace Assignment01.Pages.Films
 {
     public class IndexModel : PageModel
     {
-        [BindProperty] 
-        public List<FilmResponseDTO>? Films { get; set; } = new List<FilmResponseDTO>();
         //method 1
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
         public IndexModel(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
         
         //method 2
@@ -24,30 +24,19 @@ namespace Assignment01.Pages.Films
         //     _httpClient = httpClient;
         // }
         
-        public async Task OnGetAsync()
+        [BindProperty] 
+        public List<FilmResponseDTO>? Films { get; set; } = new List<FilmResponseDTO>();
+        
+        public async Task<IActionResult> OnGetAsync()
         {
-            //Method 1:
-            var httpClient = _httpClientFactory.CreateClient("CinemaAPI");
-            
-            using HttpResponseMessage response = await httpClient.GetAsync("api/Film");
+            var response = await _httpClient.GetAsync("api/Film");
             
             if(response.IsSuccessStatusCode)
             {
-                // var contentStr = await response.Content.ReadAsStringAsync();
-                // var content = await response.Content.ReadAsStreamAsync();
-                //
-                // // Films = await JsonSerializer.DeserializeAsync<List<Film>>(content);
-                // Films = JsonSerializer.Deserialize<List<Film>>(contentStr);
                 Films = await response.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
             }
-
-            //Method 2
-            // _httpClient.BaseAddress = new Uri("https://localhost:7196/");
-            // var response = await _httpClient.GetAsync("api/Film");
-            //
-            // response.EnsureSuccessStatusCode();
-            //
-            // Films = await response.Content.ReadFromJsonAsync<List<Film>>();
+            
+            return Page();
         }
     }
 }

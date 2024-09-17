@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Assignment01.Context;
 using Assignment01.DTO;
 using Assignment01.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Assignment01_RazorPages.Pages.Shows
 {
@@ -25,10 +26,16 @@ namespace Assignment01_RazorPages.Pages.Shows
         [BindProperty]
         public IList<ShowDTO> Shows { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             var response = await _httpClient.GetAsync("api/Show");
             Shows = await response.Content.ReadFromJsonAsync<List<ShowDTO>>();
+
+            var roomResponse = await _httpClient.GetAsync("api/Room");
+            var rooms = await roomResponse.Content.ReadFromJsonAsync<List<RoomDTO>>();
+            ViewData["Rooms"] = new SelectList(rooms, "RoomID", "Name");
+
+            return Page();
         }
     }
 }

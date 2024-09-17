@@ -1,19 +1,75 @@
 ﻿@page
-@model Assignment01_RazorPages.Pages.Shows.Search
+@model Assignment01_RazorPages.Pages.Shows.SearchModel
 
 @{
-    Layout = null;
+ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<form asp-page="Search" method="get">
+    <div class="form-group">
+        <label for="showDate">Date</label>
+        <input type="date" class="form-control" id="showDate" name="showDate" placeholder="Date">
+        <label for="selectedRoomId">Room</label>
+        <select name="selectedRoomId" asp-items="ViewBag.Rooms"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+<h1>Search</h1>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].ShowDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].Slot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].FilmID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowList[0].RoomID)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.ShowList) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FilmID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomID)
+        </td>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.ShowID">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.ShowID">Delete</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
