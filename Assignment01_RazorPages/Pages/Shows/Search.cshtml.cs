@@ -1,4 +1,5 @@
-﻿using Assignment01.DTO;
+﻿using System.Globalization;
+using Assignment01.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,13 +20,16 @@ public class SearchModel : PageModel
     [BindProperty]
     public List<ShowDTO> ShowList { get; set; } = default!;
 
+    [BindProperty]
+    public DateTime ShowDate { get; set; }
+
     public async Task<IActionResult> OnGetAsync(DateTime showDate, int selectedRoomId)
     {
         var roomResponse = await _httpClient.GetAsync("api/Room");
         var rooms = await roomResponse.Content.ReadFromJsonAsync<List<RoomDTO>>();
         ViewData["Rooms"] = new SelectList(rooms, "RoomID", "Name");
         
-        var response = await _httpClient.GetAsync($"api/Show/search/{showDate}/{selectedRoomId}");
+        var response = await _httpClient.GetAsync($"api/Show/search/{showDate.ToString("yyyy-MM-dd")}/{selectedRoomId}");
         if(response.IsSuccessStatusCode)
             ShowList = await response.Content.ReadFromJsonAsync<List<ShowDTO>>();
         else
