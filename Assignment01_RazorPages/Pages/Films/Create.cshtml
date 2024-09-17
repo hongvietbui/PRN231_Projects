@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Film.GenreID" class="control-label"></label>
-                <select asp-for="Film.GenreID" class ="form-control" asp-items="ViewBag.GenreID"></select>
+                <select asp-for="Film.GenreID" class ="form-control" asp-items="ViewBag.GenreList"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Film.Title" class="control-label"></label>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Film.CountryCode" class="control-label"></label>
-                <select asp-for="Film.CountryCode" class ="form-control" asp-items="ViewBag.CountryCode"></select>
+                <select asp-for="Film.CountryCode" class ="form-control" asp-items="ViewBag.CountryList"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Film.FilmUrl" class="control-label"></label>

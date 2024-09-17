@@ -60,7 +60,7 @@ namespace Assignment01_RazorPages.Pages.Shows
             }).ToList();
 
             var filmResponse = await _httpClient.GetAsync("api/Film");
-            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmDTO>>();
+            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
             
             FilmList = filmList.Select(f => new SelectListItem
             {

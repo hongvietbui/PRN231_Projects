@@ -23,7 +23,7 @@ namespace Assignment01_RazorPages.Pages.Shows
         }
 
       public ShowDTO Show { get; set; } = default!;
-      public FilmDTO Film { get; set; } = default!;
+      public FilmResponseDTO FilmResponse { get; set; } = default!;
       public RoomDTO Room { get; set; } = default!;
  
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -36,7 +36,7 @@ namespace Assignment01_RazorPages.Pages.Shows
             Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
             var filmResponse = await _httpClient.GetAsync($"api/Film/{Show.FilmID}");
-            Film = await filmResponse.Content.ReadFromJsonAsync<FilmDTO>();
+            FilmResponse = await filmResponse.Content.ReadFromJsonAsync<FilmResponseDTO>();
 
             var roomResponse = await _httpClient.GetAsync($"api/Room/{Show.RoomID}");
             Room = await roomResponse.Content.ReadFromJsonAsync<RoomDTO>();

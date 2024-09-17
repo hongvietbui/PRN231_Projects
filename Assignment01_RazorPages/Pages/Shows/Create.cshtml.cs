@@ -25,7 +25,7 @@ namespace Assignment01_RazorPages.Pages.Shows
         public async Task<IActionResult> OnGetAsync()
         {
             var filmResponse = await _httpClient.GetAsync($"api/Film");
-            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmDTO>>();
+            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
 
             var roomResposne = await _httpClient.GetAsync($"api/Room");
             var roomList = await roomResposne.Content.ReadFromJsonAsync<List<RoomDTO>>();

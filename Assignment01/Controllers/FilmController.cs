@@ -26,19 +26,19 @@ namespace Assignment01.Controllers
 
         // GET: api/Film
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilmDTO>>> GetFilms()
+        public async Task<ActionResult<IEnumerable<FilmResponseDTO>>> GetFilms()
         {
           if (_context.Films == null)
           {
               return NotFound();
           }
-          return _context.Films.Select(f => new FilmDTO
+          return _context.Films.Select(f => new FilmResponseDTO
           {
               FilmID = f.FilmID,
               Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
               Title = f.Title,
               Year = f.Year,
-              CountryCode = f.CountryCode,
+              CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
               FilmUrl = f.FilmUrl
           }).ToList();
         }
@@ -58,10 +58,10 @@ namespace Assignment01.Controllers
                 return NotFound();
             }
 
-            return new FilmDTO
+            return new FilmDTO()
             {
                 FilmID = film.FilmID,
-                Genre = _context.Genres.FirstOrDefault(g => g.GenreID == film.GenreID).Name,
+                GenreID = film.GenreID,
                 Title = film.Title,
                 Year = film.Year,
                 CountryCode = film.CountryCode,
@@ -72,7 +72,7 @@ namespace Assignment01.Controllers
         // PUT: api/Film/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFilm(int id, FilmRequestDTO film)
+        public async Task<IActionResult> PutFilm(int id, FilmDTO film)
         {
             if (id != film.FilmID)
             {
@@ -113,7 +113,7 @@ namespace Assignment01.Controllers
         // POST: api/Film
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<FilmDTO>> PostFilm(FilmRequestDTO film)
+        public async Task<ActionResult<FilmResponseDTO>> PostFilm(FilmDTO film)
         {
           if (_context.Films == null)
           {

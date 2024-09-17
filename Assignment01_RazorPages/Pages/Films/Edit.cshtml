@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="Film.FilmID" />
             <div class="form-group">
                 <label asp-for="Film.GenreID" class="control-label"></label>
-                <select asp-for="Film.GenreID" class="form-control" asp-items="ViewBag.GenreID"></select>
+                <select asp-for="Film.GenreID" class="form-control" asp-items="ViewBag.GenreList"></select>
                 <span asp-validation-for="Film.GenreID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Film.CountryCode" class="control-label"></label>
-                <select asp-for="Film.CountryCode" class="form-control" asp-items="ViewBag.CountryCode"></select>
+                <select asp-for="Film.CountryCode" class="form-control" asp-items="ViewBag.CountryList"></select>
                 <span asp-validation-for="Film.CountryCode" class="text-danger"></span>
             </div>
             <div class="form-group">

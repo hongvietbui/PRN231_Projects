@@ -9,7 +9,7 @@ namespace Assignment01.Pages.Films
     public class IndexModel : PageModel
     {
         [BindProperty] 
-        public List<FilmDTO>? Films { get; set; } = new List<FilmDTO>();
+        public List<FilmResponseDTO>? Films { get; set; } = new List<FilmResponseDTO>();
         //method 1
         private readonly IHttpClientFactory _httpClientFactory;
         public IndexModel(IHttpClientFactory httpClientFactory)
@@ -38,7 +38,7 @@ namespace Assignment01.Pages.Films
                 //
                 // // Films = await JsonSerializer.DeserializeAsync<List<Film>>(content);
                 // Films = JsonSerializer.Deserialize<List<Film>>(contentStr);
-                Films = await response.Content.ReadFromJsonAsync<List<FilmDTO>>();
+                Films = await response.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
             }
 
             //Method 2

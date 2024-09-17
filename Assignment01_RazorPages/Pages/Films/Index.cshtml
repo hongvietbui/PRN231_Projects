@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Films[0].Title)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Films[0].CountryName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Films[0].Year)
             </th>
             <th>
@@ -33,6 +36,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Year)
