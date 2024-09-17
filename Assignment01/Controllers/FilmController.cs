@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment01.Context;
+using Assignment01.DTO;
+using Assignment01.DTO.Request;
 using Assignment01.Entities;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
@@ -24,18 +26,26 @@ namespace Assignment01.Controllers
 
         // GET: api/Film
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Film>>> GetFilms()
+        public async Task<ActionResult<IEnumerable<FilmDTO>>> GetFilms()
         {
           if (_context.Films == null)
           {
               return NotFound();
           }
-            return await _context.Films.ToListAsync();
+          return _context.Films.Select(f => new FilmDTO
+          {
+              FilmID = f.FilmID,
+              Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
+              Title = f.Title,
+              Year = f.Year,
+              CountryCode = f.CountryCode,
+              FilmUrl = f.FilmUrl
+          }).ToList();
         }
 
         // GET: api/Film/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Film>> GetFilm(int id)
+        public async Task<ActionResult<FilmDTO>> GetFilm(int id)
         {
           if (_context.Films == null)
           {
@@ -48,20 +58,38 @@ namespace Assignment01.Controllers
                 return NotFound();
             }
 
-            return film;
+            return new FilmDTO
+            {
+                FilmID = film.FilmID,
+                Genre = _context.Genres.FirstOrDefault(g => g.GenreID == film.GenreID).Name,
+                Title = film.Title,
+                Year = film.Year,
+                CountryCode = film.CountryCode,
+                FilmUrl = film.FilmUrl
+            };
         }
 
         // PUT: api/Film/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFilm(int id, Film film)
+        public async Task<IActionResult> PutFilm(int id, FilmRequestDTO film)
         {
             if (id != film.FilmID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(film).State = EntityState.Modified;
+            var filmEntity = new Film
+            {
+                FilmID = film.FilmID,
+                GenreID = film.GenreID,
+                Title = film.Title,
+                Year = film.Year,
+                CountryCode = film.CountryCode,
+                FilmUrl = film.FilmUrl
+            };
+            
+            _context.Entry(filmEntity).State = EntityState.Modified;
 
             try
             {
@@ -85,13 +113,24 @@ namespace Assignment01.Controllers
         // POST: api/Film
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<FilmController>> PostFilm(Film film)
+        public async Task<ActionResult<FilmDTO>> PostFilm(FilmRequestDTO film)
         {
           if (_context.Films == null)
           {
               return Problem("Entity set 'MyDbContext.Films'  is null.");
           }
-            _context.Films.Add(film);
+
+          var filmEntity = new Film
+          {
+                FilmID = film.FilmID,
+                GenreID = film.GenreID,
+                Title = film.Title,
+                Year = film.Year,
+                CountryCode = film.CountryCode,
+                FilmUrl = film.FilmUrl
+          };
+          
+            _context.Films.Add(filmEntity);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFilm", new { id = film.FilmID }, film);

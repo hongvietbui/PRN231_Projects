@@ -23,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.Films[0].FilmUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Films[0].CountryCodeNavigation)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Films[0].Genre)
             </th>
             <th></th>
@@ -44,10 +41,7 @@
                 @Html.DisplayFor(modelItem => item.FilmUrl)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CountryCodeNavigation.CountryCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre.GenreID)
+                @Html.DisplayFor(modelItem => item.Genre)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.FilmID">Edit</a> |

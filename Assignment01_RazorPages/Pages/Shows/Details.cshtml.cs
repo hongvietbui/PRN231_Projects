@@ -6,37 +6,40 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Assignment01.Context;
+using Assignment01.DTO;
 using Assignment01.Entities;
 
 namespace Assignment01_RazorPages.Pages.Shows
 {
     public class DetailsModel : PageModel
     {
-        private readonly Assignment01.Context.MyDbContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public DetailsModel(Assignment01.Context.MyDbContext context)
+        public DetailsModel(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
 
-      public Show Show { get; set; } = default!; 
-
+      public ShowDTO Show { get; set; } = default!;
+      public FilmDTO Film { get; set; } = default!;
+      public RoomDTO Room { get; set; } = default!;
+ 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Shows == null)
+            if (id == null)
             {
                 return NotFound();
             }
+            var response = await _httpClient.GetAsync($"api/Show/{id}");
+            Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
-            var show = await _context.Shows.FirstOrDefaultAsync(m => m.ShowID == id);
-            if (show == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Show = show;
-            }
+            var filmResponse = await _httpClient.GetAsync($"api/Film/{Show.FilmID}");
+            Film = await filmResponse.Content.ReadFromJsonAsync<FilmDTO>();
+
+            var roomResponse = await _httpClient.GetAsync($"api/Room/{Show.RoomID}");
+            Room = await roomResponse.Content.ReadFromJsonAsync<RoomDTO>();
             return Page();
         }
     }

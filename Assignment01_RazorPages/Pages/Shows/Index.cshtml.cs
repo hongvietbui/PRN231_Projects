@@ -6,29 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Assignment01.Context;
+using Assignment01.DTO;
 using Assignment01.Entities;
 
 namespace Assignment01_RazorPages.Pages.Shows
 {
     public class IndexModel : PageModel
     {
-        private readonly Assignment01.Context.MyDbContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public IndexModel(Assignment01.Context.MyDbContext context)
+        public IndexModel(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
-
-        public IList<Show> Show { get;set; } = default!;
+        
+        [BindProperty]
+        public IList<ShowDTO> Shows { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Shows != null)
-            {
-                Show = await _context.Shows
-                .Include(s => s.Film)
-                .Include(s => s.Room).ToListAsync();
-            }
+            var response = await _httpClient.GetAsync("api/Show");
+            Shows = await response.Content.ReadFromJsonAsync<List<ShowDTO>>();
         }
     }
 }

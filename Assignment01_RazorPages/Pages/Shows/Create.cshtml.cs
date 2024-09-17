@@ -6,42 +6,54 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Assignment01.Context;
+using Assignment01.DTO;
 using Assignment01.Entities;
 
 namespace Assignment01_RazorPages.Pages.Shows
 {
     public class CreateModel : PageModel
     {
-        private readonly Assignment01.Context.MyDbContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public CreateModel(Assignment01.Context.MyDbContext context)
+        public CreateModel(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-        ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "CountryCode");
-        ViewData["RoomID"] = new SelectList(_context.Rooms, "RoomID", "RoomID");
+            var filmResponse = await _httpClient.GetAsync($"api/Film");
+            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmDTO>>();
+
+            var roomResposne = await _httpClient.GetAsync($"api/Room");
+            var roomList = await roomResposne.Content.ReadFromJsonAsync<List<RoomDTO>>();
+
+            ViewData["FilmID"] = new SelectList(filmList, "FilmID", "Title");
+            ViewData["RoomID"] = new SelectList(roomList, "RoomID", "RoomID");
             return Page();
         }
 
-        [BindProperty]
-        public Show Show { get; set; } = default!;
-        
+        [BindProperty] 
+        public ShowDTO Show { get; set; } = default!;
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Shows == null || Show == null)
+            if (!ModelState.IsValid || Show == null)
             {
                 return Page();
             }
 
-            _context.Shows.Add(Show);
-            await _context.SaveChangesAsync();
+            var response = await _httpClient.PostAsJsonAsync("api/Show", Show);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToPage("./Index");
+            }
 
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }

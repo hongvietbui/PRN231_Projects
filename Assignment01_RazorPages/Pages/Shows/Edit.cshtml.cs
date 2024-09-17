@@ -7,37 +7,66 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment01.Context;
+using Assignment01.DTO;
 using Assignment01.Entities;
 
 namespace Assignment01_RazorPages.Pages.Shows
 {
     public class EditModel : PageModel
     {
-        private readonly Assignment01.Context.MyDbContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public EditModel(Assignment01.Context.MyDbContext context)
+        public EditModel(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClientFactory = httpClientFactory;
+            _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
 
         [BindProperty]
-        public Show Show { get; set; } = default!;
+        public ShowDTO Show { get; set; } = default!;
+
+        [BindProperty]
+        public List<SelectListItem> RoomList { get; set; } = new List<SelectListItem>();
+        [BindProperty]
+        public List<SelectListItem> FilmList { get; set; } = new List<SelectListItem>();
+        
+        [BindProperty]
+        public List<SelectListItem> StatusList { get; set; } = new List<SelectListItem>
+        {
+            new SelectListItem
+            {
+                Text = "Active",
+                Value = "true"
+            },
+            new SelectListItem
+            {
+                Text = "Inactive",
+                Value = "false"
+            }
+        };
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Shows == null)
-            {
-                return NotFound();
-            }
+            var response = await _httpClient.GetAsync($"api/Show/{id}");
+            Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
-            var show =  await _context.Shows.FirstOrDefaultAsync(m => m.ShowID == id);
-            if (show == null)
+            var roomResponse = await _httpClient.GetAsync("api/Room");
+            var roomList = await roomResponse.Content.ReadFromJsonAsync<List<RoomDTO>>();
+            RoomList = roomList.Select(r => new SelectListItem
             {
-                return NotFound();
-            }
-            Show = show;
-           ViewData["FilmID"] = new SelectList(_context.Films, "FilmID", "CountryCode");
-           ViewData["RoomID"] = new SelectList(_context.Rooms, "RoomID", "RoomID");
+                Text = r.Name,
+                Value = r.RoomID.ToString()
+            }).ToList();
+
+            var filmResponse = await _httpClient.GetAsync("api/Film");
+            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmDTO>>();
+            
+            FilmList = filmList.Select(f => new SelectListItem
+            {
+                Text = f.Title,
+                Value = f.FilmID.ToString()
+            }).ToList();
             return Page();
         }
 
@@ -45,35 +74,12 @@ namespace Assignment01_RazorPages.Pages.Shows
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var response = await _httpClient.PutAsJsonAsync($"api/Show/{Show.ShowID}", Show);
+            if (response.IsSuccessStatusCode)
             {
-                return Page();
+                return RedirectToPage("./Index");
             }
-
-            _context.Attach(Show).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ShowExists(Show.ShowID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool ShowExists(int id)
-        {
-          return (_context.Shows?.Any(e => e.ShowID == id)).GetValueOrDefault();
+            return Page();
         }
     }
 }

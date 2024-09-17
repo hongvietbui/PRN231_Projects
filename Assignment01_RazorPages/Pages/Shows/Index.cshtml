@@ -14,28 +14,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].ShowDate)
+                @Html.DisplayNameFor(model => model.Shows[0].ShowDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].Price)
+                @Html.DisplayNameFor(model => model.Shows[0].Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].Status)
+                @Html.DisplayNameFor(model => model.Shows[0].Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].Slot)
+                @Html.DisplayNameFor(model => model.Shows[0].Slot)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].Film)
+                @Html.DisplayNameFor(model => model.Shows[0].FilmID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Show[0].Room)
+                @Html.DisplayNameFor(model => model.Shows[0].RoomID)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Show) {
+@foreach (var item in Model.Shows) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ShowDate)
@@ -50,10 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Slot)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Film.CountryCode)
+                @Html.DisplayFor(modelItem => item.FilmID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Room.RoomID)
+                @Html.DisplayFor(modelItem => item.RoomID)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |

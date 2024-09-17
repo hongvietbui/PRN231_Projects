@@ -16,12 +16,12 @@
             <input type="hidden" asp-for="Show.ShowID" />
             <div class="form-group">
                 <label asp-for="Show.RoomID" class="control-label"></label>
-                <select asp-for="Show.RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
+                <select asp-for="Show.RoomID" class="form-control" asp-items="Model.RoomList"></select>
                 <span asp-validation-for="Show.RoomID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Show.FilmID" class="control-label"></label>
-                <select asp-for="Show.FilmID" class="form-control" asp-items="ViewBag.FilmID"></select>
+                <select asp-for="Show.FilmID" class="form-control" asp-items="Model.FilmList"></select>
                 <span asp-validation-for="Show.FilmID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Show.Status" class="control-label"></label>
-                <input asp-for="Show.Status" class="form-control" />
+                <select asp-for="Show.Status" class="form-control" asp-items="Model.StatusList"></select>
                 <span asp-validation-for="Show.Status" class="text-danger"></span>
             </div>
             <div class="form-group">

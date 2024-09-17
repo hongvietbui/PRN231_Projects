@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Assignment01.DTO;
 using Assignment01.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,7 +9,7 @@ namespace Assignment01.Pages.Films
     public class IndexModel : PageModel
     {
         [BindProperty] 
-        public List<Film>? Films { get; set; } = new List<Film>();
+        public List<FilmDTO>? Films { get; set; } = new List<FilmDTO>();
         //method 1
         private readonly IHttpClientFactory _httpClientFactory;
         public IndexModel(IHttpClientFactory httpClientFactory)
@@ -37,7 +38,7 @@ namespace Assignment01.Pages.Films
                 //
                 // // Films = await JsonSerializer.DeserializeAsync<List<Film>>(content);
                 // Films = JsonSerializer.Deserialize<List<Film>>(contentStr);
-                Films = await response.Content.ReadFromJsonAsync<List<Film>>();
+                Films = await response.Content.ReadFromJsonAsync<List<FilmDTO>>();
             }
 
             //Method 2
