@@ -26,6 +26,9 @@ namespace Assignment01_RazorPages.Pages.Shows
         [BindProperty]
         public IList<ShowDTO> Shows { get;set; } = default!;
 
+        [BindProperty]
+        public DateTime ShowDate { get; set; } = DateTime.Now;
+
         public async Task<IActionResult> OnGetAsync()
         {
             var response = await _httpClient.GetAsync("api/Show");
@@ -34,7 +37,6 @@ namespace Assignment01_RazorPages.Pages.Shows
             var roomResponse = await _httpClient.GetAsync("api/Room");
             var rooms = await roomResponse.Content.ReadFromJsonAsync<List<RoomDTO>>();
             ViewData["Rooms"] = new SelectList(rooms, "RoomID", "Name");
-
             return Page();
         }
     }

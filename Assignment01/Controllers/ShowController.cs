@@ -182,6 +182,24 @@ namespace Assignment01.Controllers
             return NoContent();
         }
 
+        [HttpGet("getslot/{date}")]
+        public async Task<ActionResult<List<int>>> GetShowSlotByDate(DateTime date)
+        {
+            // Fetch the booked slots for the given date
+            var bookedSlots = await _context.Shows
+                .Where(b => b.ShowDate == date.Date)
+                .Select(b => b.Slot)
+                .Distinct()
+                .ToListAsync();
+            var allSlots = Enumerable.Range(1, 9).ToList();
+
+            // Exclude booked slots from the list of available slots
+            var availableSlots = allSlots.Except(bookedSlots).ToList();
+
+
+            return availableSlots;
+        }
+
         private bool ShowExists(int id)
         {
             return (_context.Shows?.Any(e => e.ShowID == id)).GetValueOrDefault();

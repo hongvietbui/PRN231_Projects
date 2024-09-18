@@ -24,6 +24,18 @@ namespace Assignment01_RazorPages.Pages.Shows
 
         public async Task<IActionResult> OnGetAsync()
         {
+            Show.ShowDate = DateTime.Today;
+
+            var slotResponse = await _httpClient.GetAsync($"api/Show/getslot/{DateTime.Today.ToString("yyyy-MM-dd")}");
+            var slotList = await slotResponse.Content.ReadFromJsonAsync<List<int>>();
+            var slotSelectList = slotList.Select(s => new Slot
+            {
+                Name = s.ToString(),
+                Value = s
+            }).ToList();
+
+            ViewData["SlotList"] = new SelectList(slotSelectList, "Value", "Name");
+
             var filmResponse = await _httpClient.GetAsync($"api/Film");
             var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
 
@@ -35,8 +47,8 @@ namespace Assignment01_RazorPages.Pages.Shows
             return Page();
         }
 
-        [BindProperty] 
-        public ShowDTO Show { get; set; } = default!;
+        [BindProperty]
+        public ShowDTO Show { get; set; } = new ShowDTO();
 
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -53,7 +65,7 @@ namespace Assignment01_RazorPages.Pages.Shows
                 return RedirectToPage("./Index");
             }
 
-            return Page();
+            return RedirectToPage($"./Search?showDate={DateTime.Now.ToString("yyyy-MM-dd")}&selectRoomId={Show.RoomID}");
         }
     }
 }

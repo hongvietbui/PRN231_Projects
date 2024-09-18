@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Show.ShowDate" class="control-label"></label>
-                <input asp-for="Show.ShowDate" class="form-control" />
+                <input asp-for="Show.ShowDate" class="form-control"/>
                 <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,11 +36,16 @@
                 <input asp-for="Show.Status" class="form-control" />
                 <span asp-validation-for="Show.Status" class="text-danger"></span>
             </div>
+@*             <div class="form-group">
+                <label asp-for="Show.Slot" class="control-label"></label>
+                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList" />
+                <span asp-validation-for="Show.Slot" class="text-danger"></span>
+            </div> *@
             <div class="form-group">
                 <label asp-for="Show.Slot" class="control-label"></label>
-                <input asp-for="Show.Slot" class="form-control" />
+                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList"></select>
                 <span asp-validation-for="Show.Slot" class="text-danger"></span>
-            </div>
+            </div> 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
