@@ -8,17 +8,19 @@
 <h1>Show Management</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create"
+       asp-route-showDate="@Model.ShowDate"
+       asp-route-selectedRoomId="@Model.SelectedRoomId">Create New</a>
 </p>
 
-<form asp-page="Search" method="get">
+<form asp-page="Index" method="get">
     <div class="form-group">
         <label for="showDate">Date</label>
         <input asp-for="ShowDate" type="date" class="form-control" id="showDate" name="showDate" placeholder="Date">
         <label for="selectedRoomId">Room</label>
-        <select name="selectedRoomId" asp-items="ViewBag.Rooms"></select>
+        <select asp-for="SelectedRoomId" name="selectedRoomId" asp-items="ViewBag.Rooms" ></select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <table class="table">

@@ -28,15 +28,25 @@ namespace Assignment01_RazorPages.Pages.Shows
 
         [BindProperty]
         public DateTime ShowDate { get; set; } = DateTime.Now;
+        
+        [BindProperty]
+        public int? SelectedRoomId { get; set; } = 1;
+        
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(DateTime? showDate, int? selectedRoomId)
         {
-            var response = await _httpClient.GetAsync("api/Show");
-            Shows = await response.Content.ReadFromJsonAsync<List<ShowDTO>>();
+            if(showDate!=null)
+                ShowDate = showDate.Value;
+            if(selectedRoomId!=null)
+                SelectedRoomId = selectedRoomId.Value;
+            var response = await _httpClient.GetAsync($"odata/Show?$filter=ShowDate eq {ShowDate.ToString("yyyy-MM-dd")} and RoomID eq {SelectedRoomId}");
+            var odataResp = await response.Content.ReadFromJsonAsync<OdataAPIResp<IList<ShowDTO>>>();
+            Shows = odataResp?.Value ?? new List<ShowDTO>(); 
 
             var roomResponse = await _httpClient.GetAsync("api/Room");
             var rooms = await roomResponse.Content.ReadFromJsonAsync<List<RoomDTO>>();
             ViewData["Rooms"] = new SelectList(rooms, "RoomID", "Name");
+            
             return Page();
         }
     }

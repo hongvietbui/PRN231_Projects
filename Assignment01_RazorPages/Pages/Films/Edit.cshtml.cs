@@ -29,7 +29,7 @@ namespace Assignment01.Pages.Films
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var response = await _httpClient.GetAsync($"api/Film/{id}");
+            var response = await _httpClient.GetAsync($"odata/Film/{id}");
             Film = await response.Content.ReadFromJsonAsync<FilmDTO>();
 
             var genreResponse = await _httpClient.GetAsync("api/Genre");
@@ -52,7 +52,7 @@ namespace Assignment01.Pages.Films
                 return Page();
             }
 
-            var response = await _httpClient.PutAsJsonAsync($"api/Film/{Film.FilmID}", Film);
+            var response = await _httpClient.PutAsJsonAsync($"odata/Film/{Film.FilmID}", Film);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToPage("./Index");

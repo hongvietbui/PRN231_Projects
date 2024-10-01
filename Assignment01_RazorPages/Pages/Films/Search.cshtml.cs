@@ -20,11 +20,12 @@ public class SearchModel : PageModel
     
     public async Task<IActionResult> OnGetAsync(string title)
     {
-        var response = await _httpClient.GetAsync($"api/Film/search/{title}");
+        var response = await _httpClient.GetAsync($"odata/Film?$filter=contains(Title, '{title}')");
         
         if(response.IsSuccessStatusCode)
         {
-            Films = await response.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
+            var respInfo = await response.Content.ReadFromJsonAsync<OdataAPIResp<List<FilmResponseDTO>>>();
+            Films = respInfo?.Value;
         }
 
         return Page();

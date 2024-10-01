@@ -32,7 +32,7 @@ namespace Assignment01_RazorPages.Pages.Shows
             {
                 return NotFound();
             }
-            var response = await _httpClient.GetAsync($"api/Show/{id}");
+            var response = await _httpClient.GetAsync($"odata/Show/{id}");
             Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
             var filmResponse = await _httpClient.GetAsync($"api/Film/{Show.FilmID}");

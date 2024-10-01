@@ -32,7 +32,7 @@ namespace Assignment01.Pages.Films
                 return NotFound();
             }
 
-            var response = await _httpClient.GetAsync($"api/Film/{id}");
+            var response = await _httpClient.GetAsync($"odata/Film/{id}");
             var filmDto = await response.Content.ReadFromJsonAsync<FilmDTO>();
 
             var genreResponse = await _httpClient.GetAsync($"api/Genre/{filmDto.GenreID}");
@@ -60,7 +60,7 @@ namespace Assignment01.Pages.Films
                 return NotFound();
             }
 
-            var response = await _httpClient.DeleteAsync($"api/Film/{id}");
+            var response = await _httpClient.DeleteAsync($"odata/Film/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToPage("./Index");

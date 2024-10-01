@@ -48,7 +48,7 @@ namespace Assignment01_RazorPages.Pages.Shows
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            var response = await _httpClient.GetAsync($"api/Show/{id}");
+            var response = await _httpClient.GetAsync($"odata/Show/{id}");
             Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
             var roomResponse = await _httpClient.GetAsync("api/Room");
@@ -74,7 +74,7 @@ namespace Assignment01_RazorPages.Pages.Shows
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            var response = await _httpClient.PutAsJsonAsync($"api/Show/{Show.ShowID}", Show);
+            var response = await _httpClient.PutAsJsonAsync($"odata/Show/{Show.ShowID}", Show);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToPage("./Index");

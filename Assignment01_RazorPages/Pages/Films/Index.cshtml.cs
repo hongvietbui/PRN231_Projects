@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Assignment01.DTO;
+using Assignment01.DTO.Request;
 using Assignment01.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,11 +30,12 @@ namespace Assignment01.Pages.Films
         
         public async Task<IActionResult> OnGetAsync()
         {
-            var response = await _httpClient.GetAsync("api/Film");
+            var response = await _httpClient.GetAsync("odata/Film");
             
             if(response.IsSuccessStatusCode)
             {
-                Films = await response.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
+                var resp = await response.Content.ReadFromJsonAsync<OdataAPIResp<List<FilmResponseDTO>>>();
+                Films = resp?.Value;
             }
             
             return Page();

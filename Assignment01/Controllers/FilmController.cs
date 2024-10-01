@@ -10,12 +10,15 @@ using Assignment01.DTO;
 using Assignment01.DTO.Request;
 using Assignment01.Entities;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Results;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 
 namespace Assignment01.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class FilmController : ControllerBase
+    [Route("odata/Film")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public class FilmController : ODataController
     {
         private readonly MyDbContext _context;
 
@@ -23,85 +26,62 @@ namespace Assignment01.Controllers
         {
             _context = context;
         }
-
-        // GET: api/Film
+        
+        [EnableQuery]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FilmResponseDTO>>> GetFilms()
+        public ActionResult Get()
         {
-          if (_context.Films == null)
-          {
-              return NotFound();
-          }
-          return _context.Films.Select(f => new FilmResponseDTO
-          {
-              FilmID = f.FilmID,
-              Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
-              Title = f.Title,
-              Year = f.Year,
-              CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
-              FilmUrl = f.FilmUrl
-          }).ToList();
+            return Ok(_context.Films);
         }
 
-        // GET: api/Film/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FilmDTO>> GetFilm(int id)
+        // GET: odata/Film({id})
+        [HttpGet("{key}")]
+        [EnableQuery]
+        public ActionResult Get([FromRoute]int key)
         {
-          if (_context.Films == null)
-          {
-              return NotFound();
-          }
-            var film = await _context.Films.FindAsync(id);
-
-            if (film == null)
+            var film = _context.Films.Where(s => s.FilmID == key);
+            if (!film.Any())
             {
                 return NotFound();
             }
-
-            return new FilmDTO()
-            {
-                FilmID = film.FilmID,
-                GenreID = film.GenreID,
-                Title = film.Title,
-                Year = film.Year,
-                CountryCode = film.CountryCode,
-                FilmUrl = film.FilmUrl
-            };
+            return Ok(SingleResult.Create(film));
         }
         
-        [HttpGet("search/{title}")]
-        public async Task<ActionResult<List<FilmResponseDTO>>> GetFilmByTitle(string title)
-        {
-            if (_context.Films == null)
-            {
-                return NotFound();
-            }
-            var filmList = await _context.Films.Select(f => new FilmResponseDTO
-            {
-                FilmID = f.FilmID,
-                Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
-                Title = f.Title,
-                Year = f.Year,
-                CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
-                FilmUrl = f.FilmUrl
-            }).Where(f => f.Title.Contains(title)).ToListAsync();
 
-            return filmList;
-        }
+        
+        // [HttpGet("search/{title}")]
+        // public async Task<ActionResult<List<FilmResponseDTO>>> GetFilmByTitle(string title)
+        // {
+        //     if (_context.Films == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     var filmList = await _context.Films.Select(f => new FilmResponseDTO
+        //     {
+        //         FilmID = f.FilmID,
+        //         Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
+        //         Title = f.Title,
+        //         Year = f.Year,
+        //         CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
+        //         FilmUrl = f.FilmUrl
+        //     }).Where(f => f.Title.Contains(title)).ToListAsync();
+        //
+        //     return filmList;
+        // }
 
         // PUT: api/Film/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFilm(int id, FilmDTO film)
+        // POST: odata/Show
+        [HttpPost]
+        public IActionResult Post([FromBody] FilmDTO film)
         {
-            if (id != film.FilmID)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
-            var filmEntity = new Film
+            var newFilmEntity = new Film
             {
-                FilmID = film.FilmID,
                 GenreID = film.GenreID,
                 Title = film.Title,
                 Year = film.Year,
@@ -109,76 +89,54 @@ namespace Assignment01.Controllers
                 FilmUrl = film.FilmUrl
             };
             
-            _context.Entry(filmEntity).State = EntityState.Modified;
+            _context.Films.Add(newFilmEntity);
+            _context.SaveChanges();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FilmExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Created(film);
         }
 
-        // POST: api/Film
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<FilmResponseDTO>> PostFilm(FilmDTO film)
+        // PUT: odata/Show(5)
+        [HttpPut("{key}")]
+        public IActionResult Put([FromRoute] int key, [FromBody] FilmDTO updateFilm)
         {
-          if (_context.Films == null)
-          {
-              return Problem("Entity set 'MyDbContext.Films'  is null.");
-          }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-          var filmEntity = new Film
-          {
-                FilmID = film.FilmID,
-                GenreID = film.GenreID,
-                Title = film.Title,
-                Year = film.Year,
-                CountryCode = film.CountryCode,
-                FilmUrl = film.FilmUrl
-          };
-          
-            _context.Films.Add(filmEntity);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetFilm", new { id = film.FilmID }, film);
-        }
-
-        // DELETE: api/Film/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFilm(int id)
-        {
-            if (_context.Films == null)
+            var existingFilm = _context.Films.Find(key);
+            if (existingFilm == null)
             {
                 return NotFound();
             }
-            var film = await _context.Films.FindAsync(id);
+
+            // Cập nhật Film hiện có
+            existingFilm.GenreID = updateFilm.GenreID;
+            existingFilm.Title = updateFilm.Title;
+            existingFilm.Year = updateFilm.Year;
+            existingFilm.CountryCode = updateFilm.CountryCode;
+            existingFilm.FilmUrl = updateFilm.FilmUrl;
+
+            _context.Entry(existingFilm).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Updated(existingFilm);
+        }
+
+        // DELETE: odata/Show(5)
+        [HttpDelete("{key}")]
+        public IActionResult Delete([FromRoute] int key)
+        {
+            var film = _context.Films.Find(key);
             if (film == null)
             {
                 return NotFound();
             }
 
             _context.Films.Remove(film);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return NoContent();
-        }
-
-        private bool FilmExists(int id)
-        {
-            return (_context.Films?.Any(e => e.FilmID == id)).GetValueOrDefault();
         }
     }
 }

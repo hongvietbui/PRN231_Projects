@@ -12,9 +12,9 @@ namespace Assignment01_RazorPages.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-
+            return Redirect("/login");
         }
     }
 }

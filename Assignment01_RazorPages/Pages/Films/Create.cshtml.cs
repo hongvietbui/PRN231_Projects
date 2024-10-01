@@ -50,7 +50,7 @@ namespace Assignment01.Pages.Films
                 await OnGetAsync();
             }
             
-            var response = await _client.PostAsync("api/film", new StringContent(JsonSerializer.Serialize(Film), Encoding.UTF8, "application/json"));
+            var response = await _client.PostAsync("odata/Film", new StringContent(JsonSerializer.Serialize(Film), Encoding.UTF8, "application/json"));
             // If the response is successful, redirect to the index page
             if(response.IsSuccessStatusCode)
             {
