@@ -27,7 +27,8 @@ namespace Assignment01_RazorPages.Pages.Shows
         {
             var slotList = new SelectList(new List<Slot>(), "Value", "Name");
             Show.ShowDate = showDate ?? DateTime.Today;
-            
+            Show.RoomID = selectedRoomId ?? 1;
+
             var response = await _httpClient.GetAsync($"odata/Show?$filter=RoomID eq {selectedRoomId} and ShowDate eq {Show.ShowDate.ToString("yyyy-MM-dd")}");
             if (response.IsSuccessStatusCode)
             {
@@ -55,8 +56,9 @@ namespace Assignment01_RazorPages.Pages.Shows
 
             ViewData["SlotList"] = slotList;
 
-            var filmResponse = await _httpClient.GetAsync($"api/Film");
-            var filmList = await filmResponse.Content.ReadFromJsonAsync<List<FilmResponseDTO>>();
+            var filmResponse = await _httpClient.GetAsync($"odata/Film");
+            var filmListResp = await filmResponse.Content.ReadFromJsonAsync<OdataAPIResp<List<FilmResponseDTO>>>();
+            var filmList = filmListResp?.Value ?? new List<FilmResponseDTO>();
 
             var roomResposne = await _httpClient.GetAsync($"api/Room");
             var roomList = await roomResposne.Content.ReadFromJsonAsync<List<RoomDTO>>();
