@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="Show.ShowID" />
             <div class="form-group">
                 <label asp-for="Show.RoomID" class="control-label"></label>
-                <select asp-for="Show.RoomID" class="form-control" asp-items="Model.RoomList"></select>
+                <select readonly asp-for="Show.RoomID" class="form-control" asp-items="Model.RoomList"></select>
                 <span asp-validation-for="Show.RoomID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Show.ShowDate" class="control-label"></label>
-                <input asp-for="Show.ShowDate" class="form-control" />
+                <input readonly asp-for="Show.ShowDate" class="form-control" />
                 <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Show.Slot" class="control-label"></label>
-                <input asp-for="Show.Slot" class="form-control" />
+                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList"></select>
                 <span asp-validation-for="Show.Slot" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,6 +52,8 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index"
+       asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
+       asp-route-selectedRoomId="@Model.Show.RoomID">Back To List</a>
 </div>
 

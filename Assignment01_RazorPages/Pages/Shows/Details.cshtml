@@ -57,5 +57,7 @@
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Show?.ShowID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index"
+       asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
+       asp-route-selectedRoomId="@Model.Show.RoomID">Back to List</a>
 </div>

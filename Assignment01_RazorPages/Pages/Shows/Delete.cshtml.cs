@@ -37,7 +37,7 @@ namespace Assignment01_RazorPages.Pages.Shows
             var response = await _httpClient.GetAsync($"odata/Show/{id}");
             Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
 
-            var filmResponse = await _httpClient.GetAsync($"api/Film/{Show.FilmID}");
+            var filmResponse = await _httpClient.GetAsync($"odata/Film/{Show.FilmID}");
             FilmResponse = await filmResponse.Content.ReadFromJsonAsync<FilmResponseDTO>();
 
             var roomResponse = await _httpClient.GetAsync($"api/Room/{Show.RoomID}");
@@ -52,10 +52,14 @@ namespace Assignment01_RazorPages.Pages.Shows
                 return NotFound();
             }
             
+            var showResponse = await _httpClient.GetAsync($"odata/Show/{id}");
+            Show = await showResponse.Content.ReadFromJsonAsync<ShowDTO>();
+            
             var response = await _httpClient.DeleteAsync($"odata/Show/{id}");
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToPage("./Index");
+                return RedirectToPage("./Index", new { showDate = Show.ShowDate.ToString("yyyy-MM-dd"), selectedRoomId = Show.RoomID });
+
             }
 
             return NotFound();

@@ -53,6 +53,8 @@
     <form method="post">
         <input type="hidden" asp-for="Show.ShowID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index"
+           asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
+           asp-route-selectedRoomId="@Model.Show.RoomID">Back To List</a>
     </form>
 </div>

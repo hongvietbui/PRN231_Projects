@@ -86,12 +86,11 @@ namespace Assignment01_RazorPages.Pages.Shows
             }
 
             var response = await _httpClient.PostAsJsonAsync("odata/Show", Show);
-            if (response.IsSuccessStatusCode)
-            {
-                return Redirect($"/Shows/Index?showDate={Show.ShowDate.ToString("yyyy-MM-dd")}&selectedRoomId={Show.RoomID}");
-            }
+            if(response.IsSuccessStatusCode)
+                Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
+            return RedirectToPage("./Index", new { showDate = Show.ShowDate.ToString("yyyy-MM-dd"), selectedRoomId = Show.RoomID });
 
-            return RedirectToPage("./Index");
+            // return RedirectToPage("./Index");
         }
     }
 }

@@ -123,10 +123,15 @@ namespace Assignment01.Controllers
             return Updated(existingFilm);
         }
 
-        // DELETE: odata/Show(5)
+        // DELETE: odata/Film(5)
         [HttpDelete("{key}")]
         public IActionResult Delete([FromRoute] int key)
         {
+            //Delete all show that has the same filmId
+            var showList = _context.Shows.Where(s => s.FilmID == key);
+                
+            _context.Shows.RemoveRange(showList);
+            
             var film = _context.Films.Find(key);
             if (film == null)
             {

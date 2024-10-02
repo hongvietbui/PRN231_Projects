@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "E:\\Projects\\PRN231\\Assignment01\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\controllers\\showcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\controllers\\showcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\films\\search.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\films\\search.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -45,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\films\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\films\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\shows\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\shows\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\controllers\\showcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\controllers\\showcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\films\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -105,10 +117,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|e:\\projects\\prn231\\assignment01\\assignment01_razorpages\\pages\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}|Assignment01_RazorPages\\Assignment01_RazorPages.csproj|solutionrelative:assignment01_razorpages\\pages\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\controllers\\genrecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -179,20 +187,12 @@
       "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\dto\\countrydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\film.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\film.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\entities\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|solutionrelative:assignment01\\entities\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5DBBA1-E517-4350-A64C-622362B23B39}|Assignment01\\Assignment01.csproj|e:\\projects\\prn231\\assignment01\\assignment01\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -230,7 +230,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -238,92 +238,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Index.cshtml.cs",
               "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Index.cshtml.cs",
               "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Index.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-23T08:51:51.701Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\appsettings.json",
-              "RelativeDocumentMoniker": "Assignment01_RazorPages\\appsettings.json",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\appsettings.json",
-              "RelativeToolTip": "Assignment01_RazorPages\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-23T08:39:24.675Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
-              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAADgvz8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T06:17:02.895Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Delete.cshtml.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
-              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
-              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T07:31:17.848Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Assignment01\\Properties\\launchSettings.json",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Assignment01\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-16T19:22:33.548Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\appsettings.json",
-              "RelativeDocumentMoniker": "Assignment01\\appsettings.json",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\appsettings.json",
-              "RelativeToolTip": "Assignment01\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-16T19:20:44.706Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Program.cs",
-              "RelativeDocumentMoniker": "Assignment01\\Program.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Program.cs",
-              "RelativeToolTip": "Assignment01\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T19:20:46.954Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Index.cshtml",
@@ -335,7 +263,158 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Booking.cs",
+              "RelativeDocumentMoniker": "Assignment01\\Entities\\Booking.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Booking.cs",
+              "RelativeToolTip": "Assignment01\\Entities\\Booking.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T19:17:27.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Country.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Country.cs",
+              "RelativeDocumentMoniker": "Assignment01\\Entities\\Country.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Country.cs",
+              "RelativeToolTip": "Assignment01\\Entities\\Country.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T20:52:54.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "Assignment01\\Controllers\\RoomController.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "Assignment01\\Controllers\\RoomController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T21:01:05.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ShowController.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\ShowController.cs",
+              "RelativeDocumentMoniker": "Assignment01\\Controllers\\ShowController.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\ShowController.cs",
+              "RelativeToolTip": "Assignment01\\Controllers\\ShowController.cs",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAUwCwBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T21:01:06.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
+              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
+              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T06:11:44.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
+              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAA3wCYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T06:11:49.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
+              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAkwB0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T06:17:02.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Program.cs",
+              "RelativeDocumentMoniker": "Assignment01\\Program.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Program.cs",
+              "RelativeToolTip": "Assignment01\\Program.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T19:20:46.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\appsettings.json",
+              "RelativeDocumentMoniker": "Assignment01\\appsettings.json",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\appsettings.json",
+              "RelativeToolTip": "Assignment01\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-16T19:20:44.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Assignment01\\Properties\\launchSettings.json",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Assignment01\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-16T19:22:33.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
+              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-18T07:31:17.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\appsettings.json",
+              "RelativeDocumentMoniker": "Assignment01_RazorPages\\appsettings.json",
+              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\appsettings.json",
+              "RelativeToolTip": "Assignment01_RazorPages\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-23T08:39:24.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Search.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Search.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Search.cshtml.cs",
@@ -347,19 +426,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
-              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwCYAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-18T06:11:49.067Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Index.cshtml.cs",
@@ -371,7 +438,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Search.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Search.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Search.cshtml",
@@ -383,19 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
-              "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
-              "RelativeToolTip": "Assignment01_RazorPages\\Pages\\Shows\\Index.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-18T06:11:44.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "Edit.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Edit.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Edit.cshtml.cs",
@@ -407,7 +462,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "Details.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Details.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Details.cshtml.cs",
@@ -443,7 +498,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "Create.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Create.cshtml",
@@ -455,19 +510,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ShowController.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\ShowController.cs",
-              "RelativeDocumentMoniker": "Assignment01\\Controllers\\ShowController.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\ShowController.cs",
-              "RelativeToolTip": "Assignment01\\Controllers\\ShowController.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAwwLgAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T21:01:06.27Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Index.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Index.cshtml",
@@ -479,7 +522,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Slot.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\Slot.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\Slot.cs",
@@ -491,7 +534,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Show.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Show.cs",
               "RelativeDocumentMoniker": "Assignment01\\Entities\\Show.cs",
@@ -503,7 +546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "Create.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Create.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Create.cshtml.cs",
@@ -515,7 +558,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Create.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Films\\Create.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Films\\Create.cshtml",
@@ -527,7 +570,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "Details.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Details.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Details.cshtml",
@@ -539,7 +582,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shows\\Delete.cshtml",
@@ -551,7 +594,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "FilmResponseDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\Response\\FilmResponseDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\Response\\FilmResponseDTO.cs",
@@ -563,19 +606,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "RoomController.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\RoomController.cs",
-              "RelativeDocumentMoniker": "Assignment01\\Controllers\\RoomController.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\RoomController.cs",
-              "RelativeToolTip": "Assignment01\\Controllers\\RoomController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T21:01:05.555Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Login\\Index.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Login\\Index.cshtml",
@@ -587,7 +618,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "GenreController.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\GenreController.cs",
               "RelativeDocumentMoniker": "Assignment01\\Controllers\\GenreController.cs",
@@ -599,7 +630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "Room.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Room.cs",
               "RelativeDocumentMoniker": "Assignment01\\Entities\\Room.cs",
@@ -611,7 +642,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "ShowDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\ShowDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\ShowDTO.cs",
@@ -623,7 +654,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "RoomDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\RoomDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\RoomDTO.cs",
@@ -635,7 +666,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "FilmController.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Controllers\\FilmController.cs",
               "RelativeDocumentMoniker": "Assignment01\\Controllers\\FilmController.cs",
@@ -647,7 +678,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Shared\\_Layout.cshtml",
@@ -659,7 +690,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\_ViewStart.cshtml",
@@ -671,7 +702,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "Error.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Error.cshtml",
@@ -683,7 +714,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Privacy.cshtml",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Privacy.cshtml",
@@ -695,7 +726,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Pages\\Login\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Pages\\Login\\Index.cshtml.cs",
@@ -707,7 +738,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "Assignment01_RazorPages.csproj",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Assignment01_RazorPages.csproj",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Assignment01_RazorPages.csproj",
@@ -719,7 +750,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "Assignment01_RazorPages",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Assignment01_RazorPages.csproj",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Assignment01_RazorPages.csproj",
@@ -730,7 +761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "LoginRequest.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\Request\\LoginRequest.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\Request\\LoginRequest.cs",
@@ -742,7 +773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "GenreDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\GenreDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\GenreDTO.cs",
@@ -754,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "FilmDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\FilmDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\FilmDTO.cs",
@@ -766,7 +797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01_RazorPages\\Program.cs",
               "RelativeDocumentMoniker": "Assignment01_RazorPages\\Program.cs",
@@ -778,7 +809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "CountryDTO.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\DTO\\CountryDTO.cs",
               "RelativeDocumentMoniker": "Assignment01\\DTO\\CountryDTO.cs",
@@ -790,19 +821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Booking.cs",
-              "RelativeDocumentMoniker": "Assignment01\\Entities\\Booking.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Booking.cs",
-              "RelativeToolTip": "Assignment01\\Entities\\Booking.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T19:17:27.614Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "Film.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Film.cs",
               "RelativeDocumentMoniker": "Assignment01\\Entities\\Film.cs",
@@ -814,7 +833,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "Genre.cs",
               "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Genre.cs",
               "RelativeDocumentMoniker": "Assignment01\\Entities\\Genre.cs",
@@ -823,18 +842,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-17T20:52:59.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "Country.cs",
-              "DocumentMoniker": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Country.cs",
-              "RelativeDocumentMoniker": "Assignment01\\Entities\\Country.cs",
-              "ToolTip": "E:\\Projects\\PRN231\\Assignment01\\Assignment01\\Entities\\Country.cs",
-              "RelativeToolTip": "Assignment01\\Entities\\Country.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T20:52:54.722Z"
             },
             {
               "$type": "Document",
