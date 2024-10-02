@@ -8,7 +8,6 @@ public class SearchModel : PageModel
 {
     [BindProperty] 
     public List<FilmResponseDTO>? Films { get; set; } = new List<FilmResponseDTO>();
-    //method 1
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly HttpClient _httpClient;
     
@@ -20,6 +19,12 @@ public class SearchModel : PageModel
     
     public async Task<IActionResult> OnGetAsync(string title)
     {
+        var isAuthenticated = HttpContext.Session.GetInt32("IsAuthenticated");
+
+        if (isAuthenticated != 1) // Nếu người dùng chưa đăng nhập
+        {
+            return Redirect("/Login/Index"); // Điều hướng về trang đăng nhập
+        }
         var response = await _httpClient.GetAsync($"api/Film/search/{title}");
         
         if(response.IsSuccessStatusCode)

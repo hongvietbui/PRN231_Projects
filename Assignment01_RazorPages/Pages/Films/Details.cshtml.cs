@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +27,12 @@ namespace Assignment01.Pages.Films
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var isAuthenticated = HttpContext.Session.GetInt32("IsAuthenticated");
+
+            if (isAuthenticated != 1) // Nếu người dùng chưa đăng nhập
+            {
+                return Redirect("/Login/Index"); // Điều hướng về trang đăng nhập
+            }
             if (id == null)
             {
                 return NotFound();

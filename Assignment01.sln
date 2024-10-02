@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment01_RazorPages", "Assignment01_RazorPages\Assignment01_RazorPages.csproj", "{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment01_RazorPages", "Assignment01_RazorPages\Assignment01_RazorPages.csproj", "{0EAC5A0E-6891-4D4C-B845-5DD21D7BB960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

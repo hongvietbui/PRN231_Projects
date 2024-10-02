@@ -5,42 +5,61 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Show</h4>
+<h1>Create Show</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Room Dropdown -->
             <div class="form-group">
                 <label asp-for="Show.RoomID" class="control-label"></label>
-                <select asp-for="Show.RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
+                <input readonly asp-for="Show.RoomID" class="form-control" asp-items="ViewBag.RoomID"></input>
+                <span asp-validation-for="Show.RoomID" class="text-danger"></span>
             </div>
+
+            <!-- Film Dropdown -->
             <div class="form-group">
                 <label asp-for="Show.FilmID" class="control-label"></label>
-                <select asp-for="Show.FilmID" class ="form-control" asp-items="ViewBag.FilmID"></select>
+                <select asp-for="Show.FilmID" class="form-control" asp-items="ViewBag.FilmID"></select>
+                <span asp-validation-for="Show.FilmID" class="text-danger"></span>
             </div>
+
+            <!-- Show Date (Readonly) -->
             <div class="form-group">
                 <label asp-for="Show.ShowDate" class="control-label"></label>
-                <input asp-for="Show.ShowDate" class="form-control" />
+                <input asp-for="Show.ShowDate" class="form-control" readonly />
                 <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
             </div>
+
+            <!-- Price Input -->
             <div class="form-group">
                 <label asp-for="Show.Price" class="control-label"></label>
                 <input asp-for="Show.Price" class="form-control" />
                 <span asp-validation-for="Show.Price" class="text-danger"></span>
             </div>
+
+            <!-- Status Input -->
             <div class="form-group">
                 <label asp-for="Show.Status" class="control-label"></label>
                 <input asp-for="Show.Status" class="form-control" />
                 <span asp-validation-for="Show.Status" class="text-danger"></span>
             </div>
+
+            <!-- Slot Dropdown -->
             <div class="form-group">
                 <label asp-for="Show.Slot" class="control-label"></label>
-                <input asp-for="Show.Slot" class="form-control" />
+                <select asp-for="Show.Slot" class="form-control">
+                    @foreach (var slot in Model.AvailableSlots)
+                    {
+                        <option value="@slot">@slot</option>
+                    }
+                </select>
                 <span asp-validation-for="Show.Slot" class="text-danger"></span>
             </div>
+
+            <!-- Submit Button -->
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -51,4 +70,3 @@
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
-

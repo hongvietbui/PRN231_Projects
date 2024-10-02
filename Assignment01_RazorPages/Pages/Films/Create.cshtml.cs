@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +30,12 @@ namespace Assignment01.Pages.Films
 
         public async Task<IActionResult> OnGetAsync()
         {
+            var isAuthenticated = HttpContext.Session.GetInt32("IsAuthenticated");
+
+            if (isAuthenticated != 1) // Nếu người dùng chưa đăng nhập
+            {
+                return Redirect("/Login/Index"); // Điều hướng về trang đăng nhập
+            }
             var genreResponse = await _client.GetAsync("api/Genre");
             var genreList = await genreResponse.Content.ReadFromJsonAsync<List<Genre>>();
             ViewData["GenreList"] = new SelectList(genreList, "GenreID", "Name");

@@ -16,8 +16,8 @@ public class GenreController : ControllerBase
     {
         _context = context;
     }
-    
-    // GET: api/Genre
+
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<GenreDTO>>> GetGenres()
     {
@@ -31,8 +31,8 @@ public class GenreController : ControllerBase
             Name = genre.Name
         }).ToListAsync();
     }
-    
-    // GET: api/Genre/5
+
+
     [HttpGet("{id}")]
     public async Task<ActionResult<GenreDTO>> GetGenre(int id)
     {

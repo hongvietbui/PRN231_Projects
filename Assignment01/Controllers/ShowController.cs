@@ -22,14 +22,14 @@ namespace Assignment01.Controllers
             _context = context;
         }
 
-        // GET: api/Show
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ShowDTO>>> GetShows()
         {
-          if (_context.Shows == null)
-          {
-              return NotFound();
-          }
+            if (_context.Shows == null)
+            {
+                return NotFound();
+            }
             return await _context.Shows.Select(s => new ShowDTO
             {
                 ShowID = s.ShowID,
@@ -42,14 +42,13 @@ namespace Assignment01.Controllers
             }).ToListAsync();
         }
 
-        // GET: api/Show/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ShowDTO>> GetShow(int id)
         {
-          if (_context.Shows == null)
-          {
-              return NotFound();
-          }
+            if (_context.Shows == null)
+            {
+                return NotFound();
+            }
             var show = await _context.Shows.FindAsync(id);
 
             if (show == null)
@@ -68,18 +67,35 @@ namespace Assignment01.Controllers
                 RoomID = show.RoomID
             };
         }
-        
-        // GET: api/Show/search/{title}
+
+        [HttpGet("getslot/{date}")]
+        public async Task<ActionResult<List<int>>> GetShowSlotByDate(DateTime date)
+        {
+            // Fetch the booked slots for the given date
+            var bookedSlots = await _context.Shows
+                .Where(b => b.ShowDate == date.Date)
+                .Select(b => b.Slot)
+                .Distinct()
+                .ToListAsync();
+            var allSlots = Enumerable.Range(1, 9).ToList();
+
+            // Exclude booked slots from the list of available slots
+            var availableSlots = allSlots.Except(bookedSlots).ToList();
+            
+
+            return availableSlots;
+        }
+
         [HttpGet("search/{showDate}/{selectedRoomId}")]
         public async Task<ActionResult<List<ShowDTO>>> GetShow(DateTime showDate, int selectedRoomId)
         {
             var shows = await _context.Shows.Where(s => s.ShowDate == showDate && s.RoomID == selectedRoomId).ToListAsync();
-            
+
             if (shows == null)
             {
                 return NotFound();
             }
-            
+
             return shows.Select(s => new ShowDTO
             {
                 ShowID = s.ShowID,
@@ -91,10 +107,8 @@ namespace Assignment01.Controllers
                 RoomID = s.RoomID
             }).ToList();
         }
-        
 
-        // PUT: api/Show/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShow(int id, ShowDTO showDTO)
         {
@@ -135,18 +149,16 @@ namespace Assignment01.Controllers
             return NoContent();
         }
 
-        // POST: api/Show
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ShowDTO>> PostShow(ShowDTO show)
         {
-          if (_context.Shows == null)
-          {
-              return Problem("Entity set 'MyDbContext.Shows'  is null.");
-          }
-          
-          var newShowEntity = new Show
-          {
+            if (_context.Shows == null)
+            {
+                return Problem("Entity set 'MyDbContext.Shows'  is null.");
+            }
+
+            var newShowEntity = new Show
+            {
                 ShowID = show.ShowID,
                 FilmID = show.FilmID,
                 ShowDate = show.ShowDate,
@@ -155,14 +167,14 @@ namespace Assignment01.Controllers
                 Slot = show.Slot,
                 RoomID = show.RoomID
             };
-            
-                _context.Shows.Add(newShowEntity);
-                await _context.SaveChangesAsync();
-    
-                return CreatedAtAction("GetShow", new { id = show.ShowID }, show);
-          }
 
-        // DELETE: api/Show/5
+            _context.Shows.Add(newShowEntity);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetShow", new { id = show.ShowID }, show);
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteShow(int id)
         {

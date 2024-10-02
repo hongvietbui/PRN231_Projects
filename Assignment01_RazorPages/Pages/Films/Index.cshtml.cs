@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Assignment01.DTO;
 using Assignment01.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,6 @@ namespace Assignment01.Pages.Films
 {
     public class IndexModel : PageModel
     {
-        //method 1
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly HttpClient _httpClient;
         public IndexModel(IHttpClientFactory httpClientFactory)
@@ -17,18 +16,18 @@ namespace Assignment01.Pages.Films
             _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
         
-        //method 2
-        // private readonly HttpClient _httpClient;
-        // public IndexModel(HttpClient httpClient)
-        // {
-        //     _httpClient = httpClient;
-        // }
-        
+      
         [BindProperty] 
         public List<FilmResponseDTO>? Films { get; set; } = new List<FilmResponseDTO>();
         
         public async Task<IActionResult> OnGetAsync()
         {
+            var isAuthenticated = HttpContext.Session.GetInt32("IsAuthenticated");
+
+            if (isAuthenticated != 1) // Nếu người dùng chưa đăng nhập
+            {
+                return Redirect("/Login/Index"); // Điều hướng về trang đăng nhập
+            }
             var response = await _httpClient.GetAsync("api/Film");
             
             if(response.IsSuccessStatusCode)

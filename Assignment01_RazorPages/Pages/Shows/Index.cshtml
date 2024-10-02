@@ -5,73 +5,64 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Shows</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create"
+       asp-route-dateNow="@Model.DateNow.ToString("yyyy-MM-dd")"
+       asp-route-selectedRoomId="@Model.SelectedRoomId">Create New</a>
 </p>
 
-<form asp-page="Search" method="get">
+<form method="get">
     <div class="form-group">
         <label for="showDate">Date</label>
-        <input type="date" class="form-control" id="showDate" name="showDate" placeholder="Date">
+        <input asp-for="DateNow" type="date" class="form-control" id="showDate" name="showDate" value="@Model.DateNow.ToString("yyyy-MM-dd")" />
+
         <label for="selectedRoomId">Room</label>
-        <select name="selectedRoomId" asp-items="ViewBag.Rooms"></select>
+        <select asp-for="SelectedRoomId" class="form-control" asp-items="ViewBag.Rooms">
+            <option value="0">All Rooms</option>
+        </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].ShowDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Slot)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].FilmID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].RoomID)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].ShowDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].Status)</th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].Slot)</th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].FilmID)</th>
+            <th>@Html.DisplayNameFor(model => model.Shows[0].RoomID)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Shows) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FilmID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ShowID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ShowID">Delete</a>
-            </td>
-        </tr>
-}
+        @if (Model.Shows != null && Model.Shows.Count > 0)
+        {
+            @foreach (var item in Model.Shows)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ShowDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Slot)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FilmID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RoomID)</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ShowID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ShowID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">No shows found for the selected date and room.</td>
+            </tr>
+        }
     </tbody>
 </table>

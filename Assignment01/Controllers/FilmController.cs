@@ -24,33 +24,33 @@ namespace Assignment01.Controllers
             _context = context;
         }
 
-        // GET: api/Film
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FilmResponseDTO>>> GetFilms()
         {
-          if (_context.Films == null)
-          {
-              return NotFound();
-          }
-          return _context.Films.Select(f => new FilmResponseDTO
-          {
-              FilmID = f.FilmID,
-              Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
-              Title = f.Title,
-              Year = f.Year,
-              CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
-              FilmUrl = f.FilmUrl
-          }).ToList();
+            if (_context.Films == null)
+            {
+                return NotFound();
+            }
+            return _context.Films.Select(f => new FilmResponseDTO
+            {
+                FilmID = f.FilmID,
+                Genre = _context.Genres.FirstOrDefault(g => g.GenreID == f.GenreID).Name,
+                Title = f.Title,
+                Year = f.Year,
+                CountryName = _context.Countries.FirstOrDefault(c => c.CountryCode == f.CountryCode).CountryName,
+                FilmUrl = f.FilmUrl
+            }).ToList();
         }
 
-        // GET: api/Film/5
+
         [HttpGet("{id}")]
         public async Task<ActionResult<FilmDTO>> GetFilm(int id)
         {
-          if (_context.Films == null)
-          {
-              return NotFound();
-          }
+            if (_context.Films == null)
+            {
+                return NotFound();
+            }
             var film = await _context.Films.FindAsync(id);
 
             if (film == null)
@@ -68,7 +68,7 @@ namespace Assignment01.Controllers
                 FilmUrl = film.FilmUrl
             };
         }
-        
+
         [HttpGet("search/{title}")]
         public async Task<ActionResult<List<FilmResponseDTO>>> GetFilmByTitle(string title)
         {
@@ -89,8 +89,6 @@ namespace Assignment01.Controllers
             return filmList;
         }
 
-        // PUT: api/Film/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFilm(int id, FilmDTO film)
         {
@@ -108,7 +106,7 @@ namespace Assignment01.Controllers
                 CountryCode = film.CountryCode,
                 FilmUrl = film.FilmUrl
             };
-            
+
             _context.Entry(filmEntity).State = EntityState.Modified;
 
             try
@@ -130,33 +128,31 @@ namespace Assignment01.Controllers
             return NoContent();
         }
 
-        // POST: api/Film
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+            [HttpPost]
         public async Task<ActionResult<FilmResponseDTO>> PostFilm(FilmDTO film)
         {
-          if (_context.Films == null)
-          {
-              return Problem("Entity set 'MyDbContext.Films'  is null.");
-          }
+            if (_context.Films == null)
+            {
+                return Problem("Entity set 'MyDbContext.Films'  is null.");
+            }
 
-          var filmEntity = new Film
-          {
+            var filmEntity = new Film
+            {
                 FilmID = film.FilmID,
                 GenreID = film.GenreID,
                 Title = film.Title,
                 Year = film.Year,
                 CountryCode = film.CountryCode,
                 FilmUrl = film.FilmUrl
-          };
-          
+            };
+
             _context.Films.Add(filmEntity);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFilm", new { id = film.FilmID }, film);
         }
 
-        // DELETE: api/Film/5
+       
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFilm(int id)
         {
