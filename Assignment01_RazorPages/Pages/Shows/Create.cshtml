@@ -11,40 +11,35 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form id="createShowForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Show.RoomID" class="control-label"></label>
-                <select readonly asp-for="Show.RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
+                <label class="control-label">Room</label>
+                <select readonly class ="form-control" id="roomList"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Show.FilmID" class="control-label"></label>
-                <select asp-for="Show.FilmID" class ="form-control" asp-items="ViewBag.FilmID"></select>
+                <label class="control-label">Film</label>
+                <select class ="form-control" id="filmList"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Show.ShowDate" class="control-label"></label>
-                <input readonly asp-for="Show.ShowDate" class="form-control"/>
-                <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
+                <label class="control-label">Show Date</label>
+                <input readonly class="form-control" type="date" id="showDate"/>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.Price" class="control-label"></label>
-                <input asp-for="Show.Price" class="form-control" />
-                <span asp-validation-for="Show.Price" class="text-danger"></span>
+                <label class="control-label">Price</label>
+                <input class="form-control" id="showPrice" type="number"/>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.Status" class="control-label"></label>
-                <select asp-for="Show.Status" class="form-control" asp-items="ViewBag.StatusList"></select>
-                <span asp-validation-for="Show.Status" class="text-danger"></span>
+                <label class="control-label">Status</label>
+                <select class="form-control" id="statusList"></select>
+                <span class="text-danger"></span>
             </div>
-@*             <div class="form-group">
-                <label asp-for="Show.Slot" class="control-label"></label>
-                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList" />
-                <span asp-validation-for="Show.Slot" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
-                <label asp-for="Show.Slot" class="control-label"></label>
-                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList"></select>
-                <span asp-validation-for="Show.Slot" class="text-danger"></span>
+                <label class="control-label">Slot</label>
+                <select class="form-control" id="slotList"></select>
+                <span class="text-danger"></span>
             </div> 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -54,8 +49,144 @@
 </div>
 
 <div>
-    <a asp-page="./Index"
-       asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
-       asp-route-selectedRoomId="@Model.Show.RoomID">Back To List</a>
+    <a id="backToListButton" asp-page="./Index">Back To List</a>
 </div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    const API_BASE_URL = 'https://localhost:7196';
+
+    //get show by selected date and room
+    $(document).ready(async function() {
+        let selectedRoomId = 1;
+        const allSlots = [...Array(9).keys()].map(i => i + 1); // Generates [1,2,3,...,9]
+
+        const urlParams = new URLSearchParams(window.location.search);
+        selectedRoomId = urlParams.get('selectedRoomId');
+        let showDateObject = new Date(decodeURIComponent(urlParams.get('showDate')));
+        
+        if (isNaN(showDateObject)){}
+        else{
+            let day = String(showDateObject.getDate()).padStart(2, '0');
+            let month = String(showDateObject.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript bắt đầu từ 0
+            let year = showDateObject.getFullYear();
+            
+            $('#showDate').val(`${year}-${month}-${day}`);
+        }
+        
+        //set back to list url with selected date and room
+        $('#backToListButton').attr('href', `./Index?selectedRoomId=${selectedRoomId}&showDate=${$('#showDate').val()}`);
+
+        // Function to load slots
+        async function loadSlots(selectedRoomId, showDate) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/odata/Show?$filter=RoomID eq ${selectedRoomId} and ShowDate eq ${$('#showDate').val()}`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'GET'
+                });
+
+                const data = await response.json();
+                let existingSlots = data.value.map(show => show.Slot); // Extract existing slots
+                let availableSlots = allSlots.filter(slot => !existingSlots.includes(slot)); // Get available slots
+
+                let slotOptions = availableSlots.map(slot => `<option value="${slot}">${slot}</option>`).join('');
+                $('#slotList').html(slotOptions); // Update the slot dropdown
+            } catch (error) {
+                console.error("Error loading slots:", error);
+                // If the request fails, fallback to showing all slots as available
+                let slotOptions = allSlots.map(slot => `<option value="${slot}">${slot}</option>`).join('');
+                $('#slotList').html(slotOptions);
+            }
+        }
+
+        // Function to load films
+        async function loadFilms() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/odata/Film`);
+                const data = await response.json();
+                let filmOptions = data.value.map(film => `<option value="${film.FilmID}">${film.Title}</option>`).join('');
+                $('#filmList').html(filmOptions); // Update the film dropdown
+            } catch (error) {
+                console.error("Error loading films:", error);
+            }
+        }
+
+        // Function to load rooms
+        async function loadRooms() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/Room`);
+                const data = await response.json();
+                let roomOptions = data.map(room => `<option value="${room.roomID}">${room.name}</option>`).join('');
+                $('#roomList').html(roomOptions).val(selectedRoomId).prop('disabled', true);
+            } catch (error) {
+                console.error("Error loading rooms:", error);
+            }
+        }
+
+        // Load status list (True/False)
+        function loadStatusList() {
+            let statusOptions = `
+            <option value="True">True</option>
+            <option value="False">False</option>
+        `;
+            $('#statusList').html(statusOptions);
+        }
+
+        // Call the functions to load all data
+        await loadSlots(selectedRoomId, showDate); // Load slot list based on room ID and date
+        await loadFilms(); // Load films
+        await loadRooms(); // Load rooms
+        loadStatusList(); // Load True/False status options
+    });
+
+    // Handle form submission
+    $('#createShowForm').submit(async function(event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        // Get values from form
+        const roomID = $('#roomList').val();
+        const filmID = $('#filmList').val();
+        const showDate = $('#showDate').val();
+        const price = $('#showPrice').val();
+        const status = $('#statusList').val();
+        const slot = $('#slotList').val();
+
+        // Prepare data to send
+        const newShow = {
+            showID: 0,
+            roomID: Number(roomID),
+            filmID: Number(filmID),
+            showDate: showDate,
+            price: parseFloat(price),
+            status: status === 'True',
+            slot: slot
+        };
+
+        try {
+            // Send POST request to API to create the show
+            const response = await fetch(`${API_BASE_URL}/odata/Show`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newShow)
+            });
+
+            if (response.ok) {
+                alert("Show created successfully!");
+                // Optionally redirect or clear the form
+                //redirect to show
+                window.location.href = `./Index?selectedRoomId=${roomID}&showDate=${showDate}`;
+            } else {
+                alert("Failed to create show.");
+            }
+        } catch (error) {
+            console.error("Error creating show:", error);
+            alert("Error creating show. Please try again.");
+        }
+    });
+</script>
+
 

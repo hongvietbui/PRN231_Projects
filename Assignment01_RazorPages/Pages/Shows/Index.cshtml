@@ -8,72 +8,110 @@
 <h1>Show Management</h1>
 
 <p>
-    <a asp-page="Create"
-       asp-route-showDate="@Model.ShowDate"
-       asp-route-selectedRoomId="@Model.SelectedRoomId">Create New</a>
+    <a id="createBtn" class="btn btn-primary">Create New</a>
 </p>
 
 <form asp-page="Index" method="get">
     <div class="form-group">
         <label for="showDate">Date</label>
-        <input asp-for="ShowDate" type="date" class="form-control" id="showDate" name="showDate" placeholder="Date">
+        <input type="date" class="form-control" id="showDate" name="showDate" placeholder="Date" itemid="showDate">
         <label for="selectedRoomId">Room</label>
-        <select asp-for="SelectedRoomId" name="selectedRoomId" asp-items="ViewBag.Rooms" ></select>
+        <select name="selectedRoomId" id="selectedRoomId"></select>
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
-<table class="table">
+<table class="table" id="showTable">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].ShowDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].Slot)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].FilmID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shows[0].RoomID)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            Show date
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Slot
+        </th>
+        <th>
+            FilmID
+        </th>
+        <th>
+            RoomID
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Shows) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FilmID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ShowID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ShowID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ShowID">Delete</a>
-            </td>
-        </tr>
-}
     </tbody>
 </table>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(async function () {
+        const urlParameters = new URLSearchParams(window.location.search);
+        let showDate = urlParameters.get('showDate');
+        let selectedRoomId = urlParameters.get('selectedRoomId');
+        
+        async function getShowByDateAndRoomId(showDate, selectedRoomId) {
+            return new Promise((resolve, reject) => {
+                fetch(`https://localhost:7196/odata/show?$filter=showDate eq ${showDate} and roomId eq ${selectedRoomId}`)
+                    .then(response => response.json())
+                    .then(data => resolve(data))
+                    .catch(error => reject(error));
+            });
+        }
+        
+        async function getRooms() {
+            return new Promise((resolve, reject) => {
+                fetch('https://localhost:7196/api/room')
+                    .then(response => response.json())
+                    .then(data => resolve(data))
+                    .catch(error => reject(error));
+            });
+        }
+
+        if (showDate === null){
+            showDate = new Date().toISOString().split('T')[0];
+            $('#showDate').val(showDate);
+        }else{
+            $('#showDate').val(showDate);
+        }
+        
+        if (selectedRoomId === null){
+            selectedRoomId = 1;
+            let rooms = await getRooms();
+            $('#selectedRoomId').html(rooms.map(room => `<option value="${room.roomID}">${room.name}</option>`))
+                .val(selectedRoomId);
+        }else{
+            let rooms = await getRooms();
+            $('#selectedRoomId').html(rooms.map(room => `<option value="${room.roomID}">${room.name}</option>`))
+                .val(selectedRoomId);
+        }
+        
+        //update show table with data
+        const showData = await getShowByDateAndRoomId(showDate, selectedRoomId);
+        $('#showTable').find('tbody').html(showData.value.map(show => `
+            <tr>
+                <td>${show.ShowDate}</td>
+                <td>${show.Price}</td>
+                <td>${show.Status === true ? 'Active' : 'Inactive'}</td>
+                <td>${show.Slot}</td>
+                <td>${show.FilmID}</td>
+                <td>${show.RoomID}</td>
+                <td>
+                    <a href="/Shows/Details?id=${show.ShowID}">Details</a> |
+                    <a href="/Shows/Edit?id=${show.ShowID}">Edit</a> |
+                    <a href="/Shows/Delete?id=${show.ShowID}">Delete</a>
+                </td>
+            </tr>
+        `));
+        
+        $('#createBtn').click(function() {
+            window.location.href = `/Shows/Create?selectedRoomId=${selectedRoomId}&showDate=${showDate}`;
+        });
+    })
+</script>

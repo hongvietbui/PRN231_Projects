@@ -11,38 +11,40 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form id="editShowForm" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Show.ShowID" />
             <div class="form-group">
-                <label asp-for="Show.RoomID" class="control-label"></label>
-                <select readonly asp-for="Show.RoomID" class="form-control" asp-items="Model.RoomList"></select>
-                <span asp-validation-for="Show.RoomID" class="text-danger"></span>
+                <label class="control-label">Room</label>
+                <select readonly class="form-control" id="roomList"></select>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.FilmID" class="control-label"></label>
-                <select asp-for="Show.FilmID" class="form-control" asp-items="Model.FilmList"></select>
-                <span asp-validation-for="Show.FilmID" class="text-danger"></span>
+                <label class="control-label">Film</label>
+                <select class="form-control" id="filmList"></select>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.ShowDate" class="control-label"></label>
-                <input readonly asp-for="Show.ShowDate" class="form-control" />
-                <span asp-validation-for="Show.ShowDate" class="text-danger"></span>
+                <label class="control-label">Show Date</label>
+                <input readonly id="showDate" class="form-control" />
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.Price" class="control-label"></label>
-                <input asp-for="Show.Price" class="form-control" />
-                <span asp-validation-for="Show.Price" class="text-danger"></span>
+                <label class="control-label">Price</label>
+                <input class="form-control" id="price"/>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.Status" class="control-label"></label>
-                <select asp-for="Show.Status" class="form-control" asp-items="Model.StatusList"></select>
-                <span asp-validation-for="Show.Status" class="text-danger"></span>
+                <label class="control-label">Status</label>
+                <select class="form-control" id="statusList">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Show.Slot" class="control-label"></label>
-                <select asp-for="Show.Slot" class="form-control" asp-items="ViewBag.SlotList"></select>
-                <span asp-validation-for="Show.Slot" class="text-danger"></span>
+                <label class="control-label">Slot</label>
+                <select class="form-control" id="slotList"></select>
+                <span class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -52,8 +54,103 @@
 </div>
 
 <div>
-    <a asp-page="./Index"
-       asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
-       asp-route-selectedRoomId="@Model.Show.RoomID">Back To List</a>
+    <a id="backToList" class="btn btn-primary">Back To List</a>
 </div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(async function () {
+        const API_BASE_URL = 'https://localhost:7196';
+        const allSlots = [...Array(9).keys()].map(i => i + 1);
+
+        async function getShowById(showId) {
+            return fetch(`${API_BASE_URL}/odata/show/${showId}`)
+                .then(response => response.json());
+        }
+
+        async function getRooms() {
+            return fetch(`${API_BASE_URL}/api/Room`)
+                .then(response => response.json());
+        }
+
+        async function getFilms() {
+            return fetch(`${API_BASE_URL}/odata/film`)
+                .then(response => response.json());
+        }
+
+        async function  loadSlots(selectedRoomId, showDate, slot) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/odata/Show?$filter=RoomID eq ${selectedRoomId} and ShowDate eq ${showDate}`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    method: 'GET'
+                });
+
+                const data = await response.json();
+                let existingSlots = data.value.map(show => show.Slot); // Lấy các slot đã được sử dụng
+                let availableSlots = allSlots.filter(s => !existingSlots.includes(s)); // Slot còn trống
+                availableSlots.push(slot); // Thêm slot hiện tại
+
+                let slotOptions = availableSlots.map(s => `<option value="${s}">${s}</option>`).join('');
+                $('#slotList').html(slotOptions);
+            } catch (error) {
+                console.error("Error loading slots:", error);
+                let slotOptions = allSlots.map(s => `<option value="${s}">${s}</option>`).join('');
+                $('#slotList').html(slotOptions); // Fallback hiển thị tất cả các slot
+            }
+        }
+
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const showId = urlParams.get('id');
+
+            const show = await getShowById(showId);
+            const rooms = await getRooms();
+            const films = await getFilms();
+
+            $('#roomList').html(rooms.map(room => `<option value="${room.roomID}">${room.name}</option>`).join(''));
+            $('#filmList').html(films.value.map(film => `<option value="${film.FilmID}">${film.Title}</option>`).join(''));
+
+            $('#roomList').val(show.RoomID);
+            $('#filmList').val(show.FilmID);
+            $('#showDate').val(new Date(show.ShowDate).toISOString().split('T')[0]); 
+            $('#price').val(show.Price);
+            $('#statusList').val(show.Status === true ? 'Active' : 'Inactive');
+            await loadSlots(show.RoomID, new Date(show.ShowDate).toISOString().split('T')[0], show.Slot);
+            
+            $('#backToList').click(function() {
+                window.location.href = `/Shows/Index?selectedRoomId=${show.RoomID}&showDate=${show.ShowDate.toString("yyyy-MM-dd")}`;
+            });
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    });
+    
+    $('#editShowForm').submit(function(e) {
+        e.preventDefault();
+        const showId = new URLSearchParams(window.location.search).get('id');
+        const show = {
+            ShowID: showId,
+            RoomID: $('#roomList').val(),
+            FilmID: $('#filmList').val(),
+            ShowDate: $('#showDate').val(),
+            Price: $('#price').val(),
+            Status: $('#statusList').val() === 'Active' ? true : false,
+            Slot: $('#slotList').val()
+        };
+
+        $.ajax({
+            url: `https://localhost:7196/odata/Show/${showId}`,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(show),
+            success: function() {
+                alert("Show updated successfully.");
+                window.location.href = `/Shows/Index?selectedRoomId=${show.RoomID}&showDate=${show.ShowDate}`;
+            },
+            error: function(error) {
+                console.error("Error updating show:", error);
+            }
+        });
+    });
+</script>
 

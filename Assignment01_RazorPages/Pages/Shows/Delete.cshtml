@@ -13,48 +13,120 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.ShowDate)
+            Date
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.ShowDate)
+        <dd class="col-sm-10" id="showDate">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Price)
+            Price
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Price)
+        <dd class="col-sm-10" id="price">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Status)
+            Status
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Status)
+        <dd class="col-sm-10" id="status">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Slot)
+            Slot
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Slot)
+        <dd class="col-sm-10" id="slot">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FilmResponse.Title)
+            Title
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FilmResponse.CountryName)
+        <dd class="col-sm-10" id="title">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Room.Name)
+            Country Name
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomID)
+        <dd class="col-sm-10" id="countryName">
+        </dd>
+        <dt class="col-sm-2">
+            Room name
+        </dt>
+        <dd class="col-sm-10" id="roomId">
         </dd>
     </dl>
     
-    <form method="post">
-        <input type="hidden" asp-for="Show.ShowID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index"
-           asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
-           asp-route-selectedRoomId="@Model.Show.RoomID">Back To List</a>
-    </form>
+    <a id="backToList" src="" class="btn btn-primary">Back To List</a>
 </div>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(async function () {
+        const API_BASE_URL = 'https://localhost:7196';
+
+        async function getShowById(showId) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `${API_BASE_URL}/odata/show/${showId}`,
+                    type: 'GET',
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        async function getFilmById(filmId) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `${API_BASE_URL}/odata/film/${filmId}`,
+                    type: 'GET',
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        async function getCountryById(countryId) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `${API_BASE_URL}/api/country/${countryId}`,
+                    type: 'GET',
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const showId = urlParams.get('id');
+
+        try {
+            const showData = await getShowById(showId);
+
+            $('#showDate').html(showData.ShowDate);
+            $('#price').html(showData.Price);
+            $('#status').html(showData.Status);
+            $('#slot').html(showData.Slot);
+
+            const film = await getFilmById(showData.FilmID);
+
+            const country = await getCountryById(film.CountryCode);
+
+            $('#title').html(film.Title);
+            $('#countryName').html(country.countryName);
+            $('#roomId').html(showData.RoomID);
+
+            $('#backToList').click(function() {
+                window.location.href = `/Shows/Index?selectedRoomId=${$('#roomId').html()}&showDate=${$('#showDate').html()}`;
+            });
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    })
+</script>
+

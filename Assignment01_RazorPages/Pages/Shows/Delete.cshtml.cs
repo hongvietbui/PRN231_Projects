@@ -22,47 +22,9 @@ namespace Assignment01_RazorPages.Pages.Shows
             _httpClient = _httpClientFactory.CreateClient("CinemaAPI");
         }
 
-        [BindProperty]
-        public ShowDTO Show { get; set; } = default!;
-
-        public FilmResponseDTO FilmResponse { get; set; } = default!;
-        public RoomDTO Room { get; set; } = default!;
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var response = await _httpClient.GetAsync($"odata/Show/{id}");
-            Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
-
-            var filmResponse = await _httpClient.GetAsync($"odata/Film/{Show.FilmID}");
-            FilmResponse = await filmResponse.Content.ReadFromJsonAsync<FilmResponseDTO>();
-
-            var roomResponse = await _httpClient.GetAsync($"api/Room/{Show.RoomID}");
-            Room = await roomResponse.Content.ReadFromJsonAsync<RoomDTO>();
             return Page();
-        }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
-            var showResponse = await _httpClient.GetAsync($"odata/Show/{id}");
-            Show = await showResponse.Content.ReadFromJsonAsync<ShowDTO>();
-            
-            var response = await _httpClient.DeleteAsync($"odata/Show/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToPage("./Index", new { showDate = Show.ShowDate.ToString("yyyy-MM-dd"), selectedRoomId = Show.RoomID });
-
-            }
-
-            return NotFound();
         }
     }
 }

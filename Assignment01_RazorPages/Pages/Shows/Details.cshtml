@@ -12,52 +12,100 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.ShowDate)
+            Show Date
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.ShowDate)
+        <dd class="col-sm-10" id="showDate">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Price)
+            Price
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Price)
+        <dd class="col-sm-10" id="price">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Status)
+            Status
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Status)
+        <dd class="col-sm-10" id="status">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Show.Slot)
+            Slot
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Show.Slot)
+        <dd class="col-sm-10" id="slot">
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FilmResponse.Title)
+            Title
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FilmResponse.Title)
+        <dd class="col-sm-10" id="title">
         </dd>
-@*         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FilmResponse.CountryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FilmResponse.CountryName)
-        </dd> *@
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Room.Name)
+            Room Name
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.RoomID)
+        <dd class="col-sm-10" id="roomId">
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Show?.ShowID">Edit</a> |
-    <a asp-page="./Index"
-       asp-route-showDate="@Model.Show.ShowDate.ToString("yyyy-MM-dd")"
-       asp-route-selectedRoomId="@Model.Show.RoomID">Back to List</a>
+    <a id="editShow" class="btn btn-primary">Edit</a> |
+    <a id="backToList" class="btn btn-primary">Back to List</a>
 </div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(async function () {
+        const API_BASE_URL = 'https://localhost:7196';
+
+        async function getShowById(showId) {
+            return new Promise((resolve, reject) => {
+                fetch(`${API_BASE_URL}/odata/show/${showId}`)
+                    .then(response => response.json())  // Chuyển đổi phản hồi thành JSON
+                    .then(data => resolve(data))
+                    .catch(error => reject(error));
+            });
+        }
+
+        async function getFilmById(filmId) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/odata/film/${filmId}`);
+                const data = await response.json(); 
+                return data;
+            } catch (error) {
+                console.error("Error fetching film:", error);
+                return null; 
+            }
+        }
+        
+        async function getRoomById(roomId){
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/room/${roomId}`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching film:", error);
+                return null;
+            }
+        }
+
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const showId = urlParams.get('id');
+            
+            const show = await getShowById(showId);
+            const film = await getFilmById(show.FilmID);
+            const room = await getRoomById(show.RoomID);
+
+            if (show && film) {
+                $('#showDate').text(show.ShowDate);
+                $('#price').text(show.Price);
+                $('#status').text(show.Status);
+                $('#slot').text(show.Slot);
+                $('#title').text(film.Title);
+                $('#roomId').text(room.name); 
+                
+                $('#editShow').attr('href', `/Shows/Edit?id=${showId}`);
+                $('#backToList').attr('href', `/Shows/Index?selectedRoomId=${room.roomID}&showDate=${$('#showDate').text()  }`);
+            } else {
+                console.error("Show or film data is missing.");
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    });
+</script>

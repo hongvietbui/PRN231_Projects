@@ -25,72 +25,52 @@ namespace Assignment01_RazorPages.Pages.Shows
 
         public async Task<IActionResult> OnGetAsync(DateTime? showDate, int? selectedRoomId = 1)
         {
-            var slotList = new SelectList(new List<Slot>(), "Value", "Name");
-            Show.ShowDate = showDate ?? DateTime.Today;
-            Show.RoomID = selectedRoomId ?? 1;
-
-            var response = await _httpClient.GetAsync($"odata/Show?$filter=RoomID eq {selectedRoomId} and ShowDate eq {Show.ShowDate.ToString("yyyy-MM-dd")}");
-            if (response.IsSuccessStatusCode)
-            {
-                var allSlots = Enumerable.Range(1, 9).ToList();
-
-                var slotResponse = await response.Content.ReadFromJsonAsync<OdataAPIResp<List<ShowDTO>>>();
-                var existingSlots = slotResponse?.Value.Select(show => show.Slot).ToList();
-                var availableSlots = allSlots.Except(existingSlots).ToList();
-            
-                var slotSelectList = availableSlots.Select(s => new Slot
-                {
-                    Name = s.ToString(),
-                    Value = s
-                }).ToList();
-                slotList = new SelectList(slotSelectList, "Value", "Name");
-            }else
-            {
-                var slotSelectList = Enumerable.Range(1, 9).Select(s => new Slot
-                {
-                    Name = s.ToString(),
-                    Value = s
-                }).ToList();
-                slotList = new SelectList(slotSelectList, "Value", "Name");
-            }
-
-            ViewData["SlotList"] = slotList;
-
-            var filmResponse = await _httpClient.GetAsync($"odata/Film");
-            var filmListResp = await filmResponse.Content.ReadFromJsonAsync<OdataAPIResp<List<FilmResponseDTO>>>();
-            var filmList = filmListResp?.Value ?? new List<FilmResponseDTO>();
-
-            var roomResposne = await _httpClient.GetAsync($"api/Room");
-            var roomList = await roomResposne.Content.ReadFromJsonAsync<List<RoomDTO>>();
-
-            ViewData["FilmID"] = new SelectList(filmList, "FilmID", "Title");
-            ViewData["RoomID"] = new SelectList(roomList, "RoomID", "RoomID");
-            ViewData["StatusList"] = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "True", Value = "True" },
-                new SelectListItem { Text = "False", Value = "False" }
-            };
+            // var slotList = new SelectList(new List<Slot>(), "Value", "Name");
+            // Show.ShowDate = showDate ?? DateTime.Today;
+            // Show.RoomID = selectedRoomId ?? 1;
+            //
+            // var response = await _httpClient.GetAsync($"odata/Show?$filter=RoomID eq {selectedRoomId} and ShowDate eq {Show.ShowDate.ToString("yyyy-MM-dd")}");
+            // if (response.IsSuccessStatusCode)
+            // {
+            //     var allSlots = Enumerable.Range(1, 9).ToList();
+            //
+            //     var slotResponse = await response.Content.ReadFromJsonAsync<OdataAPIResp<List<ShowDTO>>>();
+            //     var existingSlots = slotResponse?.Value.Select(show => show.Slot).ToList();
+            //     var availableSlots = allSlots.Except(existingSlots).ToList();
+            //
+            //     var slotSelectList = availableSlots.Select(s => new Slot
+            //     {
+            //         Name = s.ToString(),
+            //         Value = s
+            //     }).ToList();
+            //     slotList = new SelectList(slotSelectList, "Value", "Name");
+            // }else
+            // {
+            //     var slotSelectList = Enumerable.Range(1, 9).Select(s => new Slot
+            //     {
+            //         Name = s.ToString(),
+            //         Value = s
+            //     }).ToList();
+            //     slotList = new SelectList(slotSelectList, "Value", "Name");
+            // }
+            //
+            // ViewData["SlotList"] = slotList;
+            //
+            // var filmResponse = await _httpClient.GetAsync($"odata/Film");
+            // var filmListResp = await filmResponse.Content.ReadFromJsonAsync<OdataAPIResp<List<FilmResponseDTO>>>();
+            // var filmList = filmListResp?.Value ?? new List<FilmResponseDTO>();
+            //
+            // var roomResposne = await _httpClient.GetAsync($"api/Room");
+            // var roomList = await roomResposne.Content.ReadFromJsonAsync<List<RoomDTO>>();
+            //
+            // ViewData["FilmID"] = new SelectList(filmList, "FilmID", "Title");
+            // ViewData["RoomID"] = new SelectList(roomList, "RoomID", "RoomID");
+            // ViewData["StatusList"] = new List<SelectListItem>
+            // {
+            //     new SelectListItem { Text = "True", Value = "True" },
+            //     new SelectListItem { Text = "False", Value = "False" }
+            // };
             return Page();
-        }
-
-        [BindProperty]
-        public ShowDTO Show { get; set; } = new ShowDTO();
-
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid || Show == null)
-            {
-                return Page();
-            }
-
-            var response = await _httpClient.PostAsJsonAsync("odata/Show", Show);
-            if(response.IsSuccessStatusCode)
-                Show = await response.Content.ReadFromJsonAsync<ShowDTO>();
-            return RedirectToPage("./Index", new { showDate = Show.ShowDate.ToString("yyyy-MM-dd"), selectedRoomId = Show.RoomID });
-
-            // return RedirectToPage("./Index");
         }
     }
 }

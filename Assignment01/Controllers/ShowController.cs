@@ -252,7 +252,7 @@ namespace Assignment01.Controllers
             _context.Shows.Add(newShowEntity);
             _context.SaveChanges();
 
-            return Created(show);
+            return Created(new Uri($"/odata/Show({newShowEntity.ShowID})", UriKind.Relative), newShowEntity);
         }
 
         // PUT: odata/Show(5)
